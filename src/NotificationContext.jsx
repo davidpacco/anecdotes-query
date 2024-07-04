@@ -1,13 +1,5 @@
 import { createContext, useReducer } from "react"
-
-const notificationReducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_MESSAGE':
-      return action.payload
-    case 'REMOVE_MESSAGE':
-      return null
-  }
-}
+import notificationReducer from "./reducers/notificationReducer"
 
 export const NotificationContext = createContext()
 

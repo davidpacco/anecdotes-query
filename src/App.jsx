@@ -4,6 +4,7 @@ import Notification from './components/Notification'
 import { getAnecdotes, voteAnecdote } from './services/anecdotes'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import { NotificationContext } from './NotificationContext'
+import { removeNotification, setNotification } from './reducers/notificationReducer'
 
 
 const App = () => {
@@ -17,11 +18,8 @@ const App = () => {
       queryClient.setQueryData(['anecdotes'], anecdotes.map(anecdote =>
         anecdote.id !== votedAnecdote.id ? anecdote : votedAnecdote
       ))
-      dispatch({
-        type: 'SET_MESSAGE',
-        payload: `Anecdote ${votedAnecdote.content} voted`
-      })
-      setTimeout(() => dispatch({ type: 'REMOVE_MESSAGE' }), 5000)
+      dispatch(setNotification(`Anecdote ${votedAnecdote.content} voted`))
+      setTimeout(() => dispatch(removeNotification()), 5000)
     }
   })
 
