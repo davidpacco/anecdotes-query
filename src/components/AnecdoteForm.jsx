@@ -19,7 +19,7 @@ const AnecdoteForm = () => {
     onError: (error) => {
       if (error.response.request.status === 400) {
         dispatch(setNotification(`Too short anecdote, must have length of 5 or more`))
-        setTimeout(() => removeNotification(), 5000)
+        setTimeout(() => dispatch(removeNotification()), 5000)
       }
     }
   })
