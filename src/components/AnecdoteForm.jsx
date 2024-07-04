@@ -4,7 +4,7 @@ import { addAnecdote } from "../services/anecdotes"
 const AnecdoteForm = () => {
   const queryClient = useQueryClient()
 
-  const mutation = useMutation({
+  const newAnecdoteMutation = useMutation({
     mutationFn: addAnecdote,
     onSuccess: newAnecdote => {
       const anecdotes = queryClient.getQueryData(['anecdotes'])
@@ -16,7 +16,7 @@ const AnecdoteForm = () => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
-    mutation.mutate({ content, votes: 0 })
+    newAnecdoteMutation.mutate({ content, votes: 0 })
   }
 
   return (
